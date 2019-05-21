@@ -1,0 +1,7 @@
+README.md
+setup.py
+resumeparser.egg-info/PKG-INFO
+resumeparser.egg-info/SOURCES.txt
+resumeparser.egg-info/dependency_links.txt
+resumeparser.egg-info/requires.txt
+resumeparser.egg-info/top_level.txt
