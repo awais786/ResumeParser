@@ -5,10 +5,10 @@ from setuptools import find_packages, setup
 
 
 setup(
-    name='resume_parser',
+    name='resumeparser',
     version='0.0.1',
     description='A utility to make parse data from resumes.',
-    packages=['resume_parser'],
+    packages=['resumeparser'],
     install_requires=[
         'gensim==3.7.1',
         'pandas==0.24.2',
