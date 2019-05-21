@@ -8,7 +8,7 @@ setup(
     name='resume_parser',
     version='0.0.1',
     description='A utility to make parse data from resumes.',
-    packages=['resumeparser'],
+    packages=['resume_parser'],
     install_requires=[
         'gensim==3.7.1',
         'pandas==0.24.2',
