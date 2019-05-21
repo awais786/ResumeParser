@@ -1,14 +1,15 @@
-#!/usr/bin/env python
-
-import sys
-from setuptools import find_packages, setup
+import setuptools
 
 
-setup(
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
+setuptools.setup(
     name='resumeparser',
     version='0.0.1',
     description='A utility to make parse data from resumes.',
     packages=['resumeparser'],
+    url='https://github.com/awais786/ResumeParser',
     install_requires=[
         'gensim==3.7.1',
         'pandas==0.24.2',
