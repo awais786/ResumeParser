@@ -21,7 +21,7 @@ AVAILABLE_EXTENSIONS = {
 }
 
 path = Path(__file__).parent.absolute()
-yaml_path = os.path.join(path, 'config.yaml')
+yaml_path = os.path.join(path, '..', 'confs', 'config.yaml')
 
 
 def load_confs(confs_path=yaml_path):
