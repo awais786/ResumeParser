@@ -5,23 +5,31 @@ import logging
 import os
 import re
 import subprocess
+from pathlib import Path
 
 import pandas
 import yaml
 
+from resumeparser import pdf2text
 
 CONFS = None
 
-AVAILABLE_EXTENSIONS = {'.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '.htm', '.html', '.jpeg', '.jpg', '.json',
-                        '.log', '.mp3', '.msg', '.odt', '.ogg', '.pdf', '.png', '.pptx', '.ps', '.psv', '.rtf', '.tff',
-                        '.tif', '.tiff', '.tsv', '.txt', '.wav', '.xls', '.xlsx'}
+AVAILABLE_EXTENSIONS = {
+    '.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '.htm', '.html', '.jpeg', '.jpg', '.json',
+    '.log', '.mp3', '.msg', '.odt', '.ogg', '.pdf', '.png', '.pptx', '.ps', '.psv', '.rtf', '.tff',
+    '.tif', '.tiff', '.tsv', '.txt', '.wav', '.xls', '.xlsx'
+}
+
+path = Path(__file__).parent.absolute()
+yaml_path = os.path.join(path, 'config.yaml')
 
 
-def load_confs(confs_path='../confs/config.yaml'):
+def load_confs(confs_path=yaml_path):
     # TODO Docstring
     global CONFS
 
     if CONFS is None:
+
         try:
             CONFS = yaml.load(open(confs_path))
         except IOError:
@@ -56,8 +64,10 @@ def archive_dataset_schemas(step_name, local_dict, global_dict):
     logging.info('Archiving data set schema(s) for step name: {}'.format(step_name))
 
     # Reference variables
-    data_schema_dir = get_conf('data_schema_dir')
-    schema_output_path = os.path.join(data_schema_dir, step_name + '.csv')
+
+    data_schema_dir = os.path.join(path, get_conf('data_schema_dir'))
+    schema_output_path = os.path.join(path, os.path.join(data_schema_dir, step_name + '.csv'))
+
     schema_agg = list()
 
     env_variables = dict()
@@ -129,7 +139,8 @@ def convert_pdf(f):
     # Create intermediate output file
     # TODO Is this a desirable feature? Could this be replaced with a tempfile or fake file?
     output_filename = os.path.basename(os.path.splitext(f)[0]) + '.txt'
-    output_filepath = os.path.join('..', 'data', 'output', output_filename)
+    output_filepath = os.path.join(path, '..', 'data', 'output', output_filename)
+
     logging.info('Writing text from {} to {}'.format(f, output_filepath))
 
     # Convert pdf to text, placed in intermediate output file

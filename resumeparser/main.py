@@ -9,6 +9,7 @@ import inspect
 import logging
 import os
 import sys
+from pathlib import Path
 
 import pandas
 import spacy
@@ -19,6 +20,7 @@ currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0,parentdir)
 
+path = Path(__file__).parent.absolute()
 
 
 def main():
@@ -50,7 +52,7 @@ def extract():
     candidate_file_agg = list()
 
     # Create list of candidate files
-    for root, subdirs, files in os.walk(lib.get_conf('resume_directory')):
+    for root, subdirs, files in os.walk(os.path.join(path, lib.get_conf('resume_directory'))):
         folder_files = map(lambda x: os.path.join(root, x), files)
         candidate_file_agg.extend(folder_files)
 
@@ -96,7 +98,8 @@ def transform(observations, nlp):
 
 def load(observations, nlp):
     logging.info('Begin load')
-    output_path = os.path.join(lib.get_conf('summary_output_directory'), 'resume_summary.csv')
+
+    output_path = os.path.join(path, os.path.join(lib.get_conf('summary_output_directory'), 'resume_summary.csv'))
 
     logging.info('Results being output to {}'.format(output_path))
     print('Results output to {}'.format(output_path))
