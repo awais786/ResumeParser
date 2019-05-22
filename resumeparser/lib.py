@@ -9,7 +9,6 @@ import subprocess
 import pandas
 import yaml
 
-from bin import pdf2text
 
 CONFS = None
 

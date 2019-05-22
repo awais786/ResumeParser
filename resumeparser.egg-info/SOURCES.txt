@@ -1,5 +1,10 @@
 README.md
-setup.py
+resumeparser/__init__.py
+resumeparser/code_template.py
+resumeparser/field_extraction.py
+resumeparser/lib.py
+resumeparser/main.py
+resumeparser/pdf2text.py
 resumeparser.egg-info/PKG-INFO
 resumeparser.egg-info/SOURCES.txt
 resumeparser.egg-info/dependency_links.txt
