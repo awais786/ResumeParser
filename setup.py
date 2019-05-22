@@ -8,7 +8,7 @@ setuptools.setup(
     name='resumeparser',
     version='0.0.1',
     description='A utility to make parse data from resumes.',
-    packages=['resumeparser'],
+    packages=['resumeparser', 'confs', 'data'],
     url='https://github.com/awais786/ResumeParser',
     install_requires=[
         'gensim==3.7.1',
